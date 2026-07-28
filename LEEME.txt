@@ -1,175 +1,195 @@
-MOD DE ACCESIBILIDAD PARA DRAGON BALL SPARKING ZERO
-Lector de pantalla por voz para jugar sin ver
-
 ===========================================================
-QUE ES ESTO
+   MOD DE ACCESIBILIDAD PARA DRAGON BALL SPARKING ZERO
+   Un mod que hace hablar al juego, para jugarlo sin ver
 ===========================================================
 
-Este mod hace que el juego DRAGON BALL Sparking ZERO hable.
-Lee en voz alta los menus, los subtitulos, la vida y el ki en
-combate, las recompensas, la Enciclopedia, la Tienda, los
-Ajustes y mucho mas, para que una persona ciega pueda jugar.
 
-Funciona con NVDA y con cualquier lector de pantalla
-compatible. No necesitas tener NVDA abierto: el mod habla por
-su cuenta.
+BIENVENIDO
+-----------------------------------------------------------
 
-Requisitos: el juego DRAGON BALL Sparking ZERO en su version
-de Steam para Windows.
+Si estas leyendo esto, seguramente te pasa lo mismo que a
+quienes hicimos esto: quieres jugar a Sparking ZERO y el
+juego no dice absolutamente nada.
 
+Este mod se encarga de eso. Hace que el juego hable: los
+menus, los combates, la historia, los personajes. No es un
+producto de una empresa, es una herramienta hecha jugando,
+equivocandose y volviendo a probar. Funciona, se usa a
+diario, y sigue creciendo.
 
-===========================================================
-FORMA FACIL DE INSTALARLO
-===========================================================
-
-Paso 1. Descomprime este archivo comprimido en cualquier
-carpeta, por ejemplo en tu Escritorio o en Descargas.
-
-Paso 2. Busca dentro el archivo llamado Instalar.exe y abrelo
-con Enter.
-
-Es posible que Windows muestre un aviso azul diciendo que
-protegio tu equipo. Eso le pasa a cualquier programa que no
-haya pagado una firma digital, y no significa que tenga nada
-malo. Para continuar, busca el enlace que dice Mas informacion,
-activalo, y despues pulsa el boton Ejecutar de todas formas.
-
-Despues Windows te pedira permiso de administrador. Acepta.
-Hace falta porque el juego suele estar en la carpeta de
-Archivos de programa, y sin ese permiso no se puede escribir
-ahi.
-
-Paso 3. Se abrira un asistente con ventanas y botones, como el
-de cualquier programa. Son cuatro pantallas:
-
-Primero una de bienvenida. Pulsa el boton Siguiente.
-
-Despues una donde se muestra la carpeta del juego. El
-instalador la busca solo, asi que normalmente ya estara
-escrita y solo tienes que pulsar el boton Instalar. Si no la
-encontro, puedes escribirla en el cuadro de texto o buscarla
-con el boton Examinar.
-
-Luego una pantalla que copia los archivos, con su barra de
-progreso.
-
-Y por ultimo una que avisa de que termino. Pulsa Finalizar.
-
-En todas las pantallas puedes moverte con el tabulador, y la
-tecla Enter activa el boton principal.
-
-Paso 4. Abre el juego. Deberia empezar a hablarte en cuanto
-llegue a la pantalla de inicio.
-
-Si el instalador no encuentra el juego, te lo dira y te pedira
-que escribas la ruta a mano. Mas abajo se explica como saberla.
-
-Si prefieres no usar el ejecutable, dentro del paquete hay
-tambien un archivo llamado instalar.bat que hace exactamente lo
-mismo y no muestra ningun aviso de seguridad. Puedes usar el
-que quieras: los dos sirven.
+Requisitos: DRAGON BALL Sparking ZERO en su version de Steam
+para Windows. Nada mas.
 
 
-===========================================================
-FORMA MANUAL, POR SI PREFIERES HACERLO TU
-===========================================================
+QUE VAS A OIR
+-----------------------------------------------------------
 
-Dentro de este paquete hay una carpeta llamada archivos.
-Dentro de ella esta todo lo que hay que copiar, ya colocado
-con la misma estructura que necesita el juego.
+Los menus. Cada opcion segun te mueves, los submenus, y en
+Ajustes tambien el valor de cada cosa: automatico, semi,
+desactivado, los numeros del volumen.
 
-Solo tienes que copiar TODO el contenido de la carpeta
-archivos dentro de esta carpeta del juego:
+El combate. La vida y el ki, las transformaciones, los
+choques de golpes y de poderes, y los gritos de ataque de
+los personajes.
 
-Sparking ZERO, luego SparkingZERO, luego Binaries, luego
-Win64.
+La historia. Los subtitulos de las cinematicas y los
+dialogos, el mapa de episodios con sus nodos y condiciones,
+y los detalles de cada combate antes de entrar.
 
-Es decir, la carpeta donde esta el ejecutable del juego.
+Las recompensas. Lo que ganas al terminar, las subidas de
+nivel y los desbloqueos.
 
-Cuando Windows te pregunte si quieres combinar o reemplazar
-carpetas, di que si.
+La Enciclopedia. El nombre de cada personaje, sus categorias
+y sus cuatro tecnicas. Distingue incluso entre dos
+personajes que se llaman igual, como los varios Son Goku.
+
+La Tienda, con sus pestañas y articulos. El torneo entero,
+con presentador, cuadro de emparejamientos y premios. El
+menu de pausa y la lista de movimientos.
 
 
-===========================================================
-COMO SABER DONDE ESTA INSTALADO EL JUEGO
-===========================================================
+COMO INSTALARLO
+-----------------------------------------------------------
 
-Normalmente esta en una ruta parecida a esta:
+Tienes tres formas. Elige la que te resulte mas comoda, las
+tres dejan el juego igual de listo.
+
+
+FORMA 1. Un solo archivo, la mas simple.
+
+Descarga InstalarModCompleto.exe y abrelo. Ese archivo lleva
+el mod dentro, asi que no hay que descomprimir nada.
+
+Windows mostrara un aviso azul diciendo que protegio tu
+equipo. Le pasa a todo programa que no haya pagado una firma
+digital, y no significa que tenga nada malo. Para continuar,
+busca el enlace que dice Mas informacion, activalo, y pulsa
+despues el boton Ejecutar de todas formas.
+
+Luego Windows pedira permiso de administrador. Acepta. Hace
+falta porque el juego suele estar en Archivos de programa y
+sin ese permiso no se puede escribir ahi.
+
+Se abrira un asistente de cuatro pantallas:
+
+   Bienvenida. Pulsa el boton Siguiente.
+
+   Carpeta del juego. El instalador la busca solo, asi que
+   normalmente ya estara escrita y solo tienes que pulsar
+   Instalar. Si no la encontro, escribela en el cuadro de
+   texto o busca con el boton Examinar.
+
+   Instalando. Copia los archivos. Solo hay que esperar.
+
+   Terminado. Pulsa Finalizar.
+
+Puedes moverte con el tabulador. La tecla Enter activa el
+boton principal y Escape cancela.
+
+
+FORMA 2. El paquete comprimido.
+
+Descarga el archivo comprimido y descomprimelo donde
+quieras. Dentro encontraras este mismo texto, el instalador,
+y un archivo llamado instalar.bat.
+
+El instalar.bat hace exactamente lo mismo que el ejecutable,
+con la ventaja de que Windows no muestra ningun aviso de
+seguridad, porque es un archivo de texto que puedes abrir y
+leer para ver que hace. Se abre con Enter.
+
+
+FORMA 3. A mano, si te fias mas de tus manos.
+
+Dentro del paquete hay una carpeta llamada archivos. Copia
+TODO su contenido dentro de la carpeta del juego, que es
+esta:
+
+   Sparking ZERO, luego SparkingZERO, luego Binaries, luego
+   Win64.
+
+Es la carpeta donde esta el ejecutable del juego. Cuando
+Windows pregunte si quieres combinar o reemplazar, di que
+si.
+
+
+DONDE ESTA INSTALADO EL JUEGO
+-----------------------------------------------------------
+
+Lo normal es que sea una ruta parecida a esta:
 
 C:\Program Files (x86)\Steam\steamapps\common\DRAGON BALL Sparking! ZERO\SparkingZERO\Binaries\Win64
 
-Si no la encuentras, abre Steam, ve a tu biblioteca, busca el
-juego en la lista, abre sus propiedades con el menu de
-contexto, entra en la seccion de archivos instalados y usa la
-opcion de examinar los archivos locales. Se abrira el
-explorador justo en la carpeta del juego. Desde ahi entra en
-SparkingZERO, luego Binaries, luego Win64.
+Si no la encuentras, hay una forma comoda: abre Steam, ve a
+tu biblioteca, busca el juego, abre sus propiedades, entra
+en la seccion de archivos instalados y usa la opcion de
+examinar los archivos locales. Se abrira el explorador justo
+en la carpeta del juego. Desde ahi entra en SparkingZERO,
+luego Binaries, luego Win64.
 
 
-===========================================================
-QUE INCLUYE ESTE PAQUETE
-===========================================================
+DESPUES DE INSTALAR
+-----------------------------------------------------------
 
-Incluye el mod de accesibilidad y tambien UE4SS, que es el
-programa que permite que el mod funcione dentro del juego.
-No necesitas descargar nada mas.
+Abre el juego. Deberia empezar a hablarte en cuanto llegue a
+la pantalla de inicio. No hace falta que tengas NVDA
+abierto: el mod habla por su cuenta.
 
-La configuracion incluida ya viene ajustada tal y como esta
-probada. Conviene no cambiarla.
+Teclas utiles dentro del juego:
 
+   F6 repite las ultimas recompensas que ganaste.
 
-===========================================================
-TECLAS UTILES DENTRO DEL JUEGO
-===========================================================
+   F7 repite los detalles del ultimo punto del mapa de
+   historia.
 
-F6 repite las ultimas recompensas que ganaste.
-
-F7 repite los detalles del ultimo punto del mapa de historia.
-
-F5 activa o desactiva un volcado de diagnostico. Solo sirve
-para investigar fallos. Dejalo apagado mientras juegas
-normalmente.
+   F3, F4 y F5 generan informacion tecnica para investigar
+   fallos. Solo se usan cuando algo va mal; dejalas en paz
+   mientras juegas.
 
 
-===========================================================
 SI ALGO VA MAL
-===========================================================
+-----------------------------------------------------------
 
-Si el juego se cierra solo o el mod deja de hablar, hay
-informacion util guardada automaticamente en esta carpeta,
-dentro de la carpeta del juego:
+Este mod esta en desarrollo. Funciona, pero todavia puede
+fallar: en algunas transiciones entre pantallas el juego
+puede cerrarse solo. Se sigue trabajando en ello y cada
+version cierra unos cuantos casos.
 
-Binaries, luego Win64, luego AE_debug.
+Si te pasa, hay informacion util guardada automaticamente
+dentro de la carpeta del juego, en Binaries, luego Win64,
+luego AE_debug. Los archivos que mas ayudan son
+ae_livelog.txt y los tres que empiezan por ae_crumb.
+Guardarlos y enviarlos ayuda muchisimo a arreglar el
+problema, porque dicen exactamente en que estaba trabajando
+el mod en el momento del fallo.
 
-Los archivos mas utiles son ae_livelog.txt, que es el registro
-de lo que fue diciendo el mod, y los tres archivos que
-empiezan por ae_crumb, que indican en que estaba trabajando el
-mod en el momento exacto del fallo.
-
-Guardar esos archivos ayuda mucho a arreglar el problema.
-
-
-===========================================================
-PARA DESINSTALARLO
-===========================================================
-
-Entra en la carpeta Binaries, luego Win64, y borra el archivo
-dwmapi.dll. Con eso el mod deja de cargarse y el juego vuelve
-a funcionar como antes. Si quieres limpiar del todo, borra
-tambien UE4SS.dll, el archivo UE4SS-settings.ini y la carpeta
-Mods.
+Un aviso: el juego va a recibir una actualizacion grande.
+Cuando llegue, es posible que el mod deje de funcionar bien
+hasta que se adapte, porque lee la pantalla del juego por
+dentro y una actualizacion puede cambiar esa estructura.
 
 
-===========================================================
-AVISO IMPORTANTE
-===========================================================
+PARA QUITARLO
+-----------------------------------------------------------
 
-Este mod esta en desarrollo activo. Funciona y se usa a
-diario, pero todavia puede tener fallos, y en algunas
-transiciones el juego puede cerrarse. Se sigue trabajando en
-ello.
+Entra en la carpeta Binaries, luego Win64, y borra el
+archivo dwmapi.dll. Con eso el mod deja de cargarse y el
+juego vuelve a estar como antes.
 
-El juego va a recibir una actualizacion grande proximamente.
-Cuando eso pase, es posible que el mod deje de funcionar
-correctamente hasta que se adapte, porque el mod depende de
-como esta construida la pantalla del juego por dentro.
+Si quieres limpiar del todo, borra tambien UE4SS.dll,
+dsound.dll, el archivo UE4SS-settings.ini y las carpetas
+Mods y plugins.
+
+
+GRACIAS
+-----------------------------------------------------------
+
+Este mod esta hecho por y para la comunidad de jugadores
+ciegos. Si lo usas, lo compartes o cuentas que fallo, estas
+ayudando a que mejore.
+
+Incluye UE4SS y UniversalSpeech, cada uno con su licencia.
+Este proyecto no esta afiliado ni patrocinado por Bandai
+Namco ni por Spike Chunsoft.
+
+Que lo disfrutes.

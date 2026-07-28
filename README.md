@@ -2,6 +2,12 @@
 
 **Un mod que hace hablar al juego, para poder jugarlo sin ver.**
 
+![Versión](https://img.shields.io/badge/versi%C3%B3n-1.0.1-blue)
+![Sistema](https://img.shields.io/badge/sistema-Windows-lightgrey)
+![Lector de pantalla](https://img.shields.io/badge/lector%20de%20pantalla-NVDA%20y%20compatibles-green)
+![Estado](https://img.shields.io/badge/estado-en%20desarrollo%20activo-orange)
+![Idioma](https://img.shields.io/badge/idioma-espa%C3%B1ol-yellow)
+
 ## Descargas
 
 Hay tres formas de bajarlo. Elige la que prefieras, las tres instalan lo mismo.
