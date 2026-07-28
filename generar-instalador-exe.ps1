@@ -29,6 +29,21 @@ New-Item -ItemType Directory -Path $DIST -Force | Out-Null
 Copy-Item $PUB (Join-Path $DIST 'archivos') -Recurse -Force
 Copy-Item (Join-Path $BASE 'LEEME.txt')    $DIST -Force
 Copy-Item (Join-Path $BASE 'instalar.bat') $DIST -Force
+
+# El instalador compilado. Se recompila desde instalar.ps1 si hace falta, para que el .exe
+# nunca se quede desfasado respecto al script.
+$exeInst = Join-Path $BASE 'Instalar.exe'
+$ps1Inst = Join-Path $BASE 'instalar.ps1'
+if (Test-Path $ps1Inst) {
+    $recompilar = (-not (Test-Path $exeInst)) -or ((Get-Item $ps1Inst).LastWriteTime -gt (Get-Item $exeInst).LastWriteTime)
+    if ($recompilar) {
+        Write-Host '  recompilando Instalar.exe desde instalar.ps1...'
+        Import-Module ps2exe -Force
+        Invoke-PS2EXE -inputFile $ps1Inst -outputFile $exeInst -title 'Instalador del mod de accesibilidad para Sparking ZERO' `
+            -description 'Instala el mod de accesibilidad por voz' -product 'Mod de accesibilidad' -version '1.0.0' -requireAdmin | Out-Null
+    }
+}
+if (Test-Path $exeInst) { Copy-Item $exeInst $DIST -Force } else { Write-Host '  AVISO: no hay Instalar.exe, el paquete ira solo con el .bat' }
 Write-Host '  carpeta de distribucion montada'
 
 # --- 2) El .zip (opcion sin ejecutable, para quien prefiera copiar a mano) ---
@@ -38,7 +53,12 @@ if (Test-Path $zipFinal) { Remove-Item $zipFinal -Force }
 Compress-Archive -Path "$DIST\*" -DestinationPath $zipFinal -Force
 Write-Host "  zip creado: $([System.IO.Path]::GetFileName($zipFinal))"
 
-# --- 3) Preparar la carga util del .exe ---
+# El paquete ya esta completo con el .zip de arriba: lleva dentro el instalador .exe,
+# el .bat, el LEEME y los archivos del mod. Lo de abajo (IExpress) queda DESACTIVADO:
+# se colgaba sin generar nada y ya no hace falta, porque el .exe se compila con PS2EXE.
+return
+
+# --- 3) Preparar la carga util del .exe (codigo antiguo, no se ejecuta) ---
 $tmp = Join-Path $env:TEMP "sz_exe_build"
 if (Test-Path $tmp) { Remove-Item $tmp -Recurse -Force }
 New-Item -ItemType Directory -Path $tmp -Force | Out-Null

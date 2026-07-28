@@ -25,8 +25,19 @@ FORMA FACIL DE INSTALARLO
 Paso 1. Descomprime este archivo comprimido en cualquier
 carpeta, por ejemplo en tu Escritorio o en Descargas.
 
-Paso 2. Busca dentro el archivo llamado instalar.bat y abrelo
+Paso 2. Busca dentro el archivo llamado Instalar.exe y abrelo
 con Enter.
+
+Es posible que Windows muestre un aviso azul diciendo que
+protegio tu equipo. Eso le pasa a cualquier programa que no
+haya pagado una firma digital, y no significa que tenga nada
+malo. Para continuar, busca el enlace que dice Mas informacion,
+activalo, y despues pulsa el boton Ejecutar de todas formas.
+
+Despues Windows te pedira permiso de administrador. Acepta.
+Hace falta porque el juego suele estar en la carpeta de
+Archivos de programa, y sin ese permiso no se puede escribir
+ahi.
 
 Paso 3. El instalador buscara solo la carpeta donde tienes el
 juego y copiara todo en su sitio. Te ira diciendo lo que hace.
@@ -37,6 +48,11 @@ llegue a la pantalla de inicio.
 
 Si el instalador no encuentra el juego, te lo dira y te pedira
 que escribas la ruta a mano. Mas abajo se explica como saberla.
+
+Si prefieres no usar el ejecutable, dentro del paquete hay
+tambien un archivo llamado instalar.bat que hace exactamente lo
+mismo y no muestra ningun aviso de seguridad. Puedes usar el
+que quieras: los dos sirven.
 
 
 ===========================================================
