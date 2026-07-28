@@ -33,13 +33,14 @@ Copy-Item (Join-Path $BASE 'instalar.bat') $DIST -Force
 # El instalador compilado. Se recompila desde instalar.ps1 si hace falta, para que el .exe
 # nunca se quede desfasado respecto al script.
 $exeInst = Join-Path $BASE 'Instalar.exe'
-$ps1Inst = Join-Path $BASE 'instalar.ps1'
+$ps1Inst = Join-Path $BASE 'instalador-grafico.ps1'   # asistente con ventanas y botones
 if (Test-Path $ps1Inst) {
     $recompilar = (-not (Test-Path $exeInst)) -or ((Get-Item $ps1Inst).LastWriteTime -gt (Get-Item $exeInst).LastWriteTime)
     if ($recompilar) {
-        Write-Host '  recompilando Instalar.exe desde instalar.ps1...'
+        Write-Host '  recompilando Instalar.exe desde instalador-grafico.ps1...'
         Import-Module ps2exe -Force
-        Invoke-PS2EXE -inputFile $ps1Inst -outputFile $exeInst -title 'Instalador del mod de accesibilidad para Sparking ZERO' `
+        # -noConsole: asistente grafico, sin ventana negra detras.
+        Invoke-PS2EXE -inputFile $ps1Inst -outputFile $exeInst -noConsole -title 'Instalador del mod de accesibilidad para Sparking ZERO' `
             -description 'Instala el mod de accesibilidad por voz' -product 'Mod de accesibilidad' -version '1.0.0' -requireAdmin | Out-Null
     }
 }

@@ -39,9 +39,24 @@ Hace falta porque el juego suele estar en la carpeta de
 Archivos de programa, y sin ese permiso no se puede escribir
 ahi.
 
-Paso 3. El instalador buscara solo la carpeta donde tienes el
-juego y copiara todo en su sitio. Te ira diciendo lo que hace.
-Cuando termine te avisara y podras cerrar la ventana.
+Paso 3. Se abrira un asistente con ventanas y botones, como el
+de cualquier programa. Son cuatro pantallas:
+
+Primero una de bienvenida. Pulsa el boton Siguiente.
+
+Despues una donde se muestra la carpeta del juego. El
+instalador la busca solo, asi que normalmente ya estara
+escrita y solo tienes que pulsar el boton Instalar. Si no la
+encontro, puedes escribirla en el cuadro de texto o buscarla
+con el boton Examinar.
+
+Luego una pantalla que copia los archivos, con su barra de
+progreso.
+
+Y por ultimo una que avisa de que termino. Pulsa Finalizar.
+
+En todas las pantallas puedes moverte con el tabulador, y la
+tecla Enter activa el boton principal.
 
 Paso 4. Abre el juego. Deberia empezar a hablarte en cuanto
 llegue a la pantalla de inicio.
