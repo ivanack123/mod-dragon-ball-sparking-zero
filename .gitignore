@@ -4,9 +4,11 @@ alternativa 1/
 # Carpeta intermedia que arma el empaquetador (se regenera sola)
 distribucion/
 
-# Paquetes ya construidos: se publican como "release" en GitHub, no dentro del repositorio
-*.zip
-*.exe
+# El instalador y el paquete SI se suben, para que cualquiera pueda descargarlos
+# entrando al repositorio, sin tener que buscar la seccion de versiones.
+
+# Carpeta intermedia de construccion (se regenera sola)
+distribucion/
 
 # Restos de Windows
 Thumbs.db
