@@ -105,10 +105,40 @@ que empiezan por `ae_crumb`.
 Lua sobre [UE4SS](https://github.com/UE4SS-RE/RE-UE4SS), que permite ejecutar scripts
 dentro de juegos hechos con Unreal Engine, y UniversalSpeech para la voz.
 
+## Cómo colaborar
+
+Este mod se puede usar, compartir y modificar libremente. Si haces mejoras, puedes
+publicarlas y también proponerlas aquí para que entren en el proyecto principal.
+
+La forma de hacerlo es abrir una propuesta de cambios (un *pull request*). Se revisa y,
+si encaja, se incorpora dando crédito a quien la hizo. Los cambios no entran solos: hace
+falta revisión y aprobación antes de fusionarse.
+
+Si lo que quieres es avisar de un fallo, abre un *issue*. Lo más útil que puedes adjuntar
+son los archivos de la carpeta `Binaries\Win64\AE_debug` del juego, sobre todo
+`ae_livelog.txt` y los que empiezan por `ae_crumb`: dicen exactamente en qué estaba
+trabajando el mod en el momento del fallo.
+
 ## Créditos
+
+Este mod es un trabajo que ha pasado por varias manos, y el orden importa:
+
+1. **Jessica Tegner** y **[Access Forge](https://github.com/AccessForge/SparkingZeroAccess)**
+   — creación original del mod, en abril de 2026. Toda la base sobre la que se ha
+   construido lo demás: el puente de voz, la lectura de menús, el HUD de combate y los
+   subtítulos.
+2. **Iván (ivanack123)** — continuación y desarrollo desde julio de 2026: Enciclopedia,
+   valores de Ajustes, Tienda, torneo, mapa de historia, mejoras de rendimiento y la
+   caza de los cierres inesperados.
+3. **Y quien venga después.** Si colaboras, tu nombre va aquí.
 
 Hecho por y para la comunidad de jugadores ciegos.
 
-Incluye UE4SS y UniversalSpeech, cada uno con su propia licencia. Este proyecto no está
-afiliado, mantenido ni patrocinado por Bandai Namco ni por Spike Chunsoft. DRAGON BALL
-Sparking! ZERO es propiedad de sus respectivos titulares.
+## Licencia
+
+[Licencia MIT](LICENSE). Puedes usarlo, modificarlo y redistribuirlo, incluso con
+cambios, siempre que se mantengan los créditos y el aviso de licencia.
+
+Incluye UE4SS y UniversalSpeech, que tienen sus propias licencias y pertenecen a sus
+respectivos autores. Este proyecto no está afiliado, mantenido ni patrocinado por Bandai
+Namco ni por Spike Chunsoft. DRAGON BALL Sparking! ZERO es propiedad de sus titulares.

@@ -1,0 +1,43 @@
+name: Pedir una mejora
+description: Algo del juego que todavía no se lee, o una idea para el mod
+title: "[Mejora] "
+labels: ["mejora"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cuenta qué te falta. Muchas de las cosas que hoy lee el mod salieron justo de
+        aquí: alguien jugando que se topó con algo que no se leía.
+
+  - type: textarea
+    id: que
+    attributes:
+      label: ¿Qué te gustaría que leyera?
+      description: La pantalla o el elemento concreto del juego.
+      placeholder: |
+        Ejemplo: en la pantalla de selección de escenario no dice el nombre del mapa
+        cuando me muevo entre ellos.
+    validations:
+      required: true
+
+  - type: textarea
+    id: comollegar
+    attributes:
+      label: ¿Cómo se llega a esa pantalla?
+      description: Los pasos desde el menú principal. Sirve para poder reproducirlo.
+      placeholder: |
+        Ejemplo: menú principal, Batalla libre, elegir personajes, y ahí aparece la
+        selección de escenario.
+
+  - type: textarea
+    id: volcado
+    attributes:
+      label: Volcado de la pantalla (opcional, pero ayuda mucho)
+      description: |
+        Si puedes, ponte en esa pantalla, pulsa F5 para activar el volcado, espera unos
+        segundos moviéndote por ella, y vuelve a pulsar F5. Después adjunta el archivo
+        `debug_dump.txt` de la carpeta `Binaries\Win64\AE_debug`.
+
+        Ese archivo dice qué elementos hay en pantalla y qué texto tienen, que es
+        justamente lo que hace falta para poder leerlos.
+      placeholder: Arrastra el archivo a este cuadro.
