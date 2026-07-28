@@ -2,11 +2,13 @@
 
 **Un mod que hace hablar al juego, para poder jugarlo sin ver.**
 
-![Versión](https://img.shields.io/badge/versi%C3%B3n-1.0.1-blue)
+![Versión](https://img.shields.io/badge/versi%C3%B3n-1.1.0-blue)
 ![Sistema](https://img.shields.io/badge/sistema-Windows-lightgrey)
 ![Lector de pantalla](https://img.shields.io/badge/lector%20de%20pantalla-NVDA%20y%20compatibles-green)
 ![Estado](https://img.shields.io/badge/estado-en%20desarrollo%20activo-orange)
 ![Idioma](https://img.shields.io/badge/idioma-espa%C3%B1ol-yellow)
+
+[Read this in English](README.en.md)
 
 ## Descargas
 
@@ -67,7 +69,7 @@ tecla Enter activa el botón principal y Escape cancela.
 ## Instalación
 
 1. Descarga el paquete y descomprímelo donde quieras.
-2. Abre `Instalar.exe`. Busca la carpeta del juego solo y copia todo en su sitio.
+2. Abre `InstalarModCompleto.exe`. Busca la carpeta del juego solo y copia todo en su sitio.
 3. Abre el juego. Empezará a hablarte al llegar a la pantalla de inicio.
 
 Windows mostrará un aviso de que protegió tu equipo. Le pasa a cualquier programa sin
@@ -114,10 +116,11 @@ La forma de hacerlo es abrir una propuesta de cambios (un *pull request*). Se re
 si encaja, se incorpora dando crédito a quien la hizo. Los cambios no entran solos: hace
 falta revisión y aprobación antes de fusionarse.
 
-Si lo que quieres es avisar de un fallo, abre un *issue*. Lo más útil que puedes adjuntar
-son los archivos de la carpeta `Binaries\Win64\AE_debug` del juego, sobre todo
-`ae_livelog.txt` y los que empiezan por `ae_crumb`: dicen exactamente en qué estaba
-trabajando el mod en el momento del fallo.
+Si lo que quieres es avisar de un fallo, abre un *issue*: hay una plantilla que te va
+preguntando lo necesario paso a paso. Lo más útil que puedes adjuntar son los archivos de
+la carpeta `Binaries\Win64\AE_debug` del juego, sobre todo `ae_livelog.txt` y los que
+empiezan por `ae_crumb`: dicen exactamente en qué estaba trabajando el mod en el momento
+del fallo.
 
 ## Créditos
 
