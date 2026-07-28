@@ -2,11 +2,24 @@
 
 **Un mod que hace hablar al juego, para poder jugarlo sin ver.**
 
-**Descarga: [ModSparkingZero-20260728.zip](ModSparkingZero-20260728.zip)**
+## Descargas
 
-Descarga el paquete completo, no solo el instalador. `Instalar.exe` por sí solo no
-sirve de nada: no lleva el mod dentro, lo copia desde la carpeta que viene a su lado
-dentro del paquete.
+Hay tres formas de bajarlo. Elige la que prefieras, las tres instalan lo mismo.
+
+**1. Todo en uno, lo más simple:** [InstalarModCompleto.exe](InstalarModCompleto.exe)
+
+Un solo archivo. Lo abres, pulsas Siguiente, pulsas Instalar y ya está. Lleva el mod
+dentro, no hay que descargar ni descomprimir nada más.
+
+**2. El paquete comprimido:** [ModSparkingZero-20260728.zip](ModSparkingZero-20260728.zip)
+
+Lo descomprimes y dentro tienes las instrucciones, el instalador y, si prefieres no usar
+ningún ejecutable, un `instalar.bat` que hace lo mismo sin que Windows muestre ningún
+aviso de seguridad. También puedes copiar los archivos a mano.
+
+**3. Solo las instrucciones:** [LEEME.txt](LEEME.txt)
+
+Por si quieres leer antes qué es esto y qué hace el instalador, sin descargar nada.
 
 ---
 
