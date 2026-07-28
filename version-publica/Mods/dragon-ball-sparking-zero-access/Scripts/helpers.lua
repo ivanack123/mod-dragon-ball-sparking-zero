@@ -82,7 +82,21 @@ function Helpers.GetCachedFirstOf(typeName)
         _firstOfMissUntil[typeName] = nil
         return fresh
     end
-    _firstOfMissUntil[typeName] = os.clock() + 0.5
+    -- REINTENTO DE LOS FALLOS: 0.5s -> 1.5s (07-28). MEDIDO, no estimado.
+    -- Con `bUseUObjectArrayCache = false` en la configuración de UE4SS, un `FindFirstOf` que NO
+    -- encuentra nada recorre la lista COMPLETA de objetos del juego, y eso cuesta del orden de 0.33s.
+    -- La tanda de pause-checks de PollFocus consulta CINCO clases que, fuera de una batalla, no existen
+    -- ninguna: cinco recorridos completos seguidos. En el registro del torneo eso se midió en
+    -- **164 atascos con una media de 1.43s** (máximo 3.08s) y NUEVE muertes del bucle en una sesión.
+    -- Una de esas muertes cayó justo en el segundo en que el presentador anunciaba la final, y por eso
+    -- esa línea no se leyó mientras que la de semifinales sí (allí el bucle murió un segundo DESPUÉS).
+    -- Reintentar un fallo cada medio segundo es carísimo cuando el fallo cuesta un tercio de segundo.
+    -- Con 1.5s el gasto de los gates que no encuentran nada baja a la tercera parte.
+    -- LO QUE CUESTA: una pantalla que aparece puede tardar hasta 1.5s en detectarse. Donde más
+    -- importaría —el menú de pausa en batalla— NO afecta, porque ahí esos widgets SÍ existen y quedan
+    -- cacheados, así que se detectan al instante; el gasto grande es justo cuando no hay nada que hallar.
+    -- ARREGLO DE FONDO PENDIENTE: activar `bUseUObjectArrayCache` haría instantáneas estas búsquedas.
+    _firstOfMissUntil[typeName] = os.clock() + 1.5
     return nil
 end
 

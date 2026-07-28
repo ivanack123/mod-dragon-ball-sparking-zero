@@ -24,8 +24,18 @@ $modOut = Join-Path $OUT 'Mods\dragon-ball-sparking-zero-access\Scripts'
 New-Item -ItemType Directory -Path $modOut -Force | Out-Null
 
 # --- 1) UE4SS y su configuracion ---
-foreach ($f in @('dwmapi.dll', 'UE4SS.dll', 'UE4SS-settings.ini')) {
-    Copy-Item (Join-Path $JUEGO $f) (Join-Path $OUT $f) -Force
+# OJO: `dsound.dll` y `plugins\` son el UTOC Signature Bypass. Las notas del proyecto lo listan
+# como parte de la instalacion que funciona, asi que se distribuye tal cual. Se detecto el 07-28
+# que faltaban en el paquete: sin ellos el mod podria no arrancar en otro ordenador.
+foreach ($f in @('dwmapi.dll', 'UE4SS.dll', 'UE4SS-settings.ini', 'dsound.dll')) {
+    $origen = Join-Path $JUEGO $f
+    if (Test-Path $origen) { Copy-Item $origen (Join-Path $OUT $f) -Force }
+    else { Write-Host "  AVISO: no encuentro $f" }
+}
+$plugins = Join-Path $JUEGO 'plugins'
+if (Test-Path $plugins) {
+    Copy-Item $plugins $OUT -Recurse -Force
+    Write-Host '  incluida: carpeta plugins (UTOC Signature Bypass)'
 }
 
 # --- 2) Los mods que UE4SS trae de serie (NO son del mod de accesibilidad) ---
@@ -69,6 +79,10 @@ if ((Get-Content $mainPub -Raw) -notmatch 'local AE_DIAG = false') { throw 'El i
 if (-not (Test-Path (Join-Path $modOut 'debug_tools.lua'))) { throw 'FALTA debug_tools.lua (F3/F4/F5 deben funcionar)' }
 foreach ($c in @('main.lua','speech.lua','helpers.lua','speech_bridge.dll','UniversalSpeech.dll')) {
     if (-not (Test-Path (Join-Path $modOut $c))) { throw "Falta un archivo imprescindible: $c" }
+}
+# Piezas que hacen que UE4SS arranque dentro del juego. Si falta alguna, el mod no habla.
+foreach ($c in @('dwmapi.dll','UE4SS.dll','dsound.dll','plugins\DBSparkingZeroUTOCBypass.asi')) {
+    if (-not (Test-Path (Join-Path $OUT $c))) { throw "Falta una pieza de arranque: $c" }
 }
 $bak = Get-ChildItem $OUT -Recurse -Include '*.bak-*' -File
 if ($bak) { throw "Se colaron respaldos: $($bak.Name -join ', ')" }
