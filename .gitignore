@@ -1,0 +1,13 @@
+# Descartes y pruebas locales
+alternativa 1/
+
+# Carpeta intermedia que arma el empaquetador (se regenera sola)
+distribucion/
+
+# Paquetes ya construidos: se publican como "release" en GitHub, no dentro del repositorio
+*.zip
+*.exe
+
+# Restos de Windows
+Thumbs.db
+Desktop.ini
