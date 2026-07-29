@@ -13,3 +13,7 @@ distribucion/
 # Restos de Windows
 Thumbs.db
 Desktop.ini
+
+# Basura que genera Python al importar el limpiador
+__pycache__/
+*.pyc
