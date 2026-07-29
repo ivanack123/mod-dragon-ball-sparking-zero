@@ -32,6 +32,20 @@ foreach ($f in @('dwmapi.dll', 'UE4SS.dll', 'UE4SS-settings.ini', 'dsound.dll'))
     if (Test-Path $origen) { Copy-Item $origen (Join-Path $OUT $f) -Force }
     else { Write-Host "  AVISO: no encuentro $f" }
 }
+# LA CACHE DE OBJETOS NO SE DISTRIBUYE HASTA QUE ESTE PROBADA (07-29).
+# En nuestra maquina esta activada a modo de prueba, y como el ini se copia tal cual del
+# juego, se colo activada en el paquete publico. Aqui se fuerza a `false`, que es lo que
+# lleva funcionando meses. Cuando Ivan confirme que la cache va bien, se quita este bloque.
+$iniPub = Join-Path $OUT 'UE4SS-settings.ini'
+if (Test-Path $iniPub) {
+    $ini = Get-Content $iniPub -Raw
+    if ($ini -match 'bUseUObjectArrayCache\s*=\s*true') {
+        $ini = $ini -replace 'bUseUObjectArrayCache\s*=\s*true', 'bUseUObjectArrayCache = false'
+        [System.IO.File]::WriteAllText($iniPub, $ini, (New-Object System.Text.UTF8Encoding($false)))
+        Write-Host '  cache de objetos forzada a false en el paquete publico (sin probar)'
+    }
+}
+
 $plugins = Join-Path $JUEGO 'plugins'
 if (Test-Path $plugins) {
     Copy-Item $plugins $OUT -Recurse -Force
@@ -87,7 +101,18 @@ foreach ($c in @('dwmapi.dll','UE4SS.dll','dsound.dll','plugins\DBSparkingZeroUT
 $bak = Get-ChildItem $OUT -Recurse -Include '*.bak-*' -File
 if ($bak) { throw "Se colaron respaldos: $($bak.Name -join ', ')" }
 
+# NADA EN DISCO SIN QUE EL USUARIO LO PIDA (07-29).
+# Se detecto que la version publica SI escribia al arrancar: debug_tools.Init creaba la
+# carpeta AE_debug, vaciaba cuatro archivos y dejaba una migaja, pasara lo que pasara.
+# Ahora la carpeta se crea bajo demanda (EnsureDumpDir), solo al pulsar F3/F4/F5. Estas
+# comprobaciones evitan que eso se vuelva a colar sin darnos cuenta.
+$dbg = Get-Content (Join-Path $modOut 'debug_tools.lua') -Raw
+if ($dbg -notmatch 'EnsureDumpDir') { throw 'debug_tools.lua no tiene la creacion bajo demanda de la carpeta' }
+$init = $dbg -replace '(?s)^.*function DebugTools\.Init', ''
+if ($init -match 'os\.execute') { throw 'debug_tools.Init vuelve a crear la carpeta al arrancar' }
+if ($init -match 'filesToClear') { throw 'debug_tools.Init vuelve a vaciar archivos al arrancar' }
+
 Write-Host ''
 Write-Host "Version publica lista en: $OUT" -ForegroundColor Green
-Write-Host "Archivos del mod copiados: $copiados (debug_tools.lua excluido)"
-Write-Host 'Esta version NO escribe nada en disco.'
+Write-Host "Archivos del mod copiados: $copiados (debug_tools.lua incluido: F3/F4/F5)"
+Write-Host 'Comprobado: no escribe nada en disco salvo que el usuario pulse F3, F4 o F5.'

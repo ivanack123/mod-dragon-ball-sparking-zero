@@ -142,10 +142,6 @@ Teclas utiles dentro del juego:
    F7 repite los detalles del ultimo punto del mapa de
    historia.
 
-   F3, F4 y F5 generan informacion tecnica para investigar
-   fallos. Solo se usan cuando algo va mal; dejalas en paz
-   mientras juegas.
-
 
 SI ALGO VA MAL
 -----------------------------------------------------------
@@ -155,13 +151,11 @@ fallar: en algunas transiciones entre pantallas el juego
 puede cerrarse solo. Se sigue trabajando en ello y cada
 version cierra unos cuantos casos.
 
-Si te pasa, hay informacion util guardada automaticamente
-dentro de la carpeta del juego, en Binaries, luego Win64,
-luego AE_debug. Los archivos que mas ayudan son
-ae_livelog.txt y los tres que empiezan por ae_crumb.
-Guardarlos y enviarlos ayuda muchisimo a arreglar el
-problema, porque dicen exactamente en que estaba trabajando
-el mod en el momento del fallo.
+Si te pasa, cuentalo en la pagina del proyecto. Con decir en
+que pantalla estabas y que estabas haciendo suele bastar.
+
+El mod no guarda nada en tu ordenador ni envia nada a
+ninguna parte: solo lee la pantalla y habla.
 
 Un aviso: el juego va a recibir una actualizacion grande.
 Cuando llegue, es posible que el mod deje de funcionar bien

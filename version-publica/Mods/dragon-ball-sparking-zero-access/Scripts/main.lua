@@ -51,6 +51,10 @@ pcall(function() require("poll_trackers").aeDiag = AE_DIAG end)
 
 local _prevLiveLog = nil
 if AE_DIAG then
+-- La carpeta la creaba debug_tools al arrancar; desde el 07-29 ya no lo hace (en la versiÃ³n
+-- pÃºblica no debe aparecer nada en disco). AquÃ­ sÃ­ hace falta, y este bloque entero solo corre
+-- con AE_DIAG = true, asÃ­ que la pÃºblica sigue sin tocar el disco.
+pcall(os.execute, "mkdir AE_debug 2>NUL")
 pcall(function()
     local f = io.open("AE_debug/ae_livelog.txt", "r")
     if f then _prevLiveLog = f:read("*a"); f:close() end

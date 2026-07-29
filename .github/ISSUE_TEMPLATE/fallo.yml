@@ -8,10 +8,6 @@ body:
       value: |
         Gracias por avisar. Cuanto más concreto seas, antes se puede arreglar.
 
-        Lo más útil de todo son los archivos de diagnóstico: dicen exactamente en qué
-        estaba trabajando el mod en el momento del fallo. Están en la carpeta del juego,
-        en `Binaries\Win64\AE_debug`.
-
   - type: dropdown
     id: tipo
     attributes:
@@ -43,16 +39,6 @@ body:
       options:
         - label: Me ha pasado más de una vez
         - label: Me pasa siempre que hago lo mismo
-
-  - type: textarea
-    id: diagnostico
-    attributes:
-      label: Archivos de diagnóstico
-      description: |
-        Arrastra aquí los archivos de `Binaries\Win64\AE_debug`. Los que más ayudan son
-        `ae_livelog.txt` y los tres que empiezan por `ae_crumb`. Si el juego se cerró, no
-        abras el juego de nuevo antes de copiarlos: al arrancar se reinician.
-      placeholder: Arrastra los archivos a este cuadro.
 
   - type: input
     id: version

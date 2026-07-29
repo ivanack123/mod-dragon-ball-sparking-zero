@@ -28,16 +28,3 @@ body:
       placeholder: |
         Ejemplo: menú principal, Batalla libre, elegir personajes, y ahí aparece la
         selección de escenario.
-
-  - type: textarea
-    id: volcado
-    attributes:
-      label: Volcado de la pantalla (opcional, pero ayuda mucho)
-      description: |
-        Si puedes, ponte en esa pantalla, pulsa F5 para activar el volcado, espera unos
-        segundos moviéndote por ella, y vuelve a pulsar F5. Después adjunta el archivo
-        `debug_dump.txt` de la carpeta `Binaries\Win64\AE_debug`.
-
-        Ese archivo dice qué elementos hay en pantalla y qué texto tienen, que es
-        justamente lo que hace falta para poder leerlos.
-      placeholder: Arrastra el archivo a este cuadro.

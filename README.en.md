@@ -55,8 +55,8 @@ commercial product — it is a tool that grows through use.
 It speaks on its own, with no need to have a screen reader window open. Tested daily with
 **NVDA** on Windows 11, and it uses UniversalSpeech, so other compatible readers work too.
 
-The installer is a wizard built with standard Windows controls so screen readers announce
-it properly: every field has its label, Enter activates the main button and Escape cancels.
+The installer is an ordinary wizard, the usual kind: it reads fine with a screen reader
+and you just keep pressing Next.
 
 ## Installation
 
@@ -76,11 +76,17 @@ To uninstall, delete `dwmapi.dll` from the game folder.
 
 - **F6** repeats the last rewards.
 - **F7** repeats the details of the last story map node.
-- **F3**, **F4** and **F5** produce diagnostic dumps, only useful when investigating bugs.
 
 ## What's new
 
-The full history is in [CHANGELOG.md](CHANGELOG.md).
+**Version 1.1.0** — the Encyclopedia can now be browsed end to end: it reads each
+character's name, their categories and their four techniques, and it tells apart two
+characters that share a name. Settings now speak the value of each option as you move
+through them, with no need to leave and come back. Reading was added for the Shop and the
+tournament menus. And under the hood the reader is noticeably lighter: menus that used to
+stall now respond.
+
+The full history, version by version, is in [CHANGELOG.md](CHANGELOG.md).
 
 ## Project status, honestly
 
@@ -91,9 +97,8 @@ continues and every version closes a few more cases.
 The mod reads the interface by querying the game's own elements at runtime. That means a
 **major game update may break it** until it is adapted.
 
-If you hit a bug, the most useful thing you can send is the contents of the game's
-`Binaries\Win64\AE_debug` folder, especially `ae_livelog.txt` and the files starting with
-`ae_crumb`.
+The mod stores nothing on your computer and sends nothing anywhere: it just reads the
+screen and speaks.
 
 ## Contributing
 
@@ -103,7 +108,8 @@ changes and also propose them here so they become part of the main project.
 Open a pull request and it will be reviewed; if it fits, it gets merged with credit to
 whoever wrote it. Nothing is merged without review and approval.
 
-To report a bug, open an issue and attach the diagnostic files mentioned above.
+To report a bug, open an issue: there is a template that walks you through it. Telling us
+which screen you were on and what you were doing is usually enough to track it down.
 
 ## Credits
 

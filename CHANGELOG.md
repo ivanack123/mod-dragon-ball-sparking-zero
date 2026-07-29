@@ -53,10 +53,7 @@ estaba creando o destruyendo:
 - Al entrar al torneo y al empezar una batalla.
 - Al arrancar el juego, justo cuando desaparece el aviso de contenido descargable.
 
-Para eso se construyó un sistema de diagnóstico propio: marcas que registran en qué punto
-exacto estaba trabajando el mod cuando el juego murió, un registro de eventos al instante y
-mediciones de los atascos internos. Sin eso habría sido imposible: cada caso se cerró
-leyendo esas marcas, no adivinando.
+Cada uno se cerró con pruebas de lo que estaba pasando por dentro, no adivinando.
 
 ### Distribución
 
@@ -64,8 +61,8 @@ leyendo esas marcas, no adivinando.
 - Alternativa en archivo por lotes, sin avisos de seguridad de Windows.
 - Paquete completo con el mod y todo lo necesario para que funcione, sin tener que
   descargar nada más.
-- La versión que se publica no escribe archivos de diagnóstico: eso queda solo para el
-  desarrollo.
+- La versión que se publica no guarda ningún archivo en tu ordenador: solo lee la pantalla
+  y habla.
 
 ---
 

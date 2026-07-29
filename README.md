@@ -19,7 +19,7 @@ Hay tres formas de bajarlo. Elige la que prefieras, las tres instalan lo mismo.
 Un solo archivo. Lo abres, pulsas Siguiente, pulsas Instalar y ya está. Lleva el mod
 dentro, no hay que descargar ni descomprimir nada más.
 
-**2. El paquete comprimido:** [ModSparkingZero-20260728.zip](ModSparkingZero-20260728.zip)
+**2. El paquete comprimido:** [ModSparkingZero-20260729.zip](ModSparkingZero-20260729.zip)
 
 Lo descomprimes y dentro tienes las instrucciones, el instalador y, si prefieres no usar
 ningún ejecutable, un `instalar.bat` que hace lo mismo sin que Windows muestre ningún
@@ -62,9 +62,8 @@ Habla por su cuenta, sin necesidad de tener el lector abierto. Está probado a d
 con **NVDA** en Windows 11, y usa UniversalSpeech, así que también funciona con otros
 lectores compatibles.
 
-El instalador es un asistente con ventanas y botones, hecho con controles estándar de
-Windows para que el lector de pantalla los lea bien: cada campo tiene su etiqueta, la
-tecla Enter activa el botón principal y Escape cancela.
+El instalador es un asistente normal, de los de toda la vida: se lee bien con el lector
+de pantalla y solo hay que ir dando a Siguiente.
 
 ## Instalación
 
@@ -83,11 +82,16 @@ Para desinstalarlo, borra `dwmapi.dll` de la carpeta del juego.
 
 - **F6** repite las últimas recompensas.
 - **F7** repite los detalles del último punto del mapa de historia.
-- **F3**, **F4** y **F5** generan volcados de información, útiles solo para investigar fallos.
 
 ## Novedades
 
-El historial completo de cambios está en [CHANGELOG.md](CHANGELOG.md).
+**Versión 1.1.0** — la Enciclopedia ya se puede recorrer entera: dice el nombre de cada
+personaje, sus categorías y sus cuatro técnicas, y distingue entre dos que se llaman
+igual. Los Ajustes ahora cantan el valor de cada opción al pasar por ella, sin tener que
+salir y volver a entrar. Se añadió la lectura de la Tienda y de los menús del torneo. Y
+por dentro, el lector va bastante más ligero: los menús que se atascaban ya responden.
+
+El historial completo, versión por versión, está en [CHANGELOG.md](CHANGELOG.md).
 
 ## Estado del proyecto, con honestidad
 
@@ -98,9 +102,8 @@ lento de lo que debería. Se sigue trabajando en ello y cada versión va cerrand
 El mod lee la interfaz consultando los elementos del juego mientras se ejecuta. Eso
 significa que **una actualización grande del juego puede romperlo** hasta que se adapte.
 
-Si te encuentras un fallo, lo más útil que puedes enviar es lo que queda guardado en la
-carpeta `Binaries\Win64\AE_debug` del juego, sobre todo `ae_livelog.txt` y los archivos
-que empiezan por `ae_crumb`.
+El mod no guarda nada en tu ordenador ni envía nada a ninguna parte: solo lee la pantalla
+y habla.
 
 ## Cómo está hecho
 
@@ -117,10 +120,8 @@ si encaja, se incorpora dando crédito a quien la hizo. Los cambios no entran so
 falta revisión y aprobación antes de fusionarse.
 
 Si lo que quieres es avisar de un fallo, abre un *issue*: hay una plantilla que te va
-preguntando lo necesario paso a paso. Lo más útil que puedes adjuntar son los archivos de
-la carpeta `Binaries\Win64\AE_debug` del juego, sobre todo `ae_livelog.txt` y los que
-empiezan por `ae_crumb`: dicen exactamente en qué estaba trabajando el mod en el momento
-del fallo.
+preguntando lo necesario paso a paso. Con que cuentes en qué pantalla estabas y qué
+estabas haciendo suele bastar para dar con ello.
 
 ## Créditos
 
