@@ -61,35 +61,35 @@ Get-ChildItem (Join-Path $JUEGO 'Mods') -Directory |
     ForEach-Object { Copy-Item $_.FullName $modsOut -Recurse -Force }
 Copy-Item (Join-Path $JUEGO 'Mods\mods.txt') $modsOut -Force
 
-# --- 3) El mod de accesibilidad, SIN diagnosticos ---
+# --- 3) El mod de accesibilidad ---
+# Se copia TAL CUAL, byte a byte. Nada de leer y reescribir el texto desde PowerShell:
+# `Get-Content -Raw` en Windows PowerShell 5.1 lee el archivo como ANSI, y al volver a
+# guardarlo en UTF-8 destrozaba todas las letras acentuadas de main.lua. El recorte de
+# los diagnosticos lo hace despues el script de Python, que si respeta la codificacion.
 $src = Join-Path $JUEGO 'Mods\dragon-ball-sparking-zero-access\Scripts'
-# NADA se excluye: debug_tools.lua (F3/F4/F5) SI va en la version publica, son funciones
-# del proyecto que el usuario invoca a mano. Lo que se apaga es la maquinaria de cazar
-# crashes (migajas, mediciones, avisos temporales), y de eso se encarga el interruptor.
-$excluidos = @()
 $copiados = 0
 Get-ChildItem $src -File | Where-Object { $_.Name -notlike '*.bak-*' } | ForEach-Object {
-    if ($excluidos -contains $_.Name) {
-        Write-Host "  EXCLUIDO: $($_.Name)"
-        return
-    }
-    $destino = Join-Path $modOut $_.Name
-    if ($_.Name -eq 'main.lua') {
-        $texto = Get-Content $_.FullName -Raw
-        if ($texto -notmatch 'local AE_DIAG = true') { throw 'No encuentro el interruptor AE_DIAG en main.lua' }
-        $texto = $texto -replace 'local AE_DIAG = true', 'local AE_DIAG = false'
-        # Guardar SIN BOM: Lua no lo tolera bien al principio del archivo
-        [System.IO.File]::WriteAllText($destino, $texto, (New-Object System.Text.UTF8Encoding($false)))
-        Write-Host '  main.lua copiado con AE_DIAG = false (sin diagnosticos)'
-    } else {
-        Copy-Item $_.FullName $destino -Force
-    }
+    Copy-Item $_.FullName (Join-Path $modOut $_.Name) -Force
     $copiados++
 }
 
+# --- 3b) QUITAR DE VERDAD la maquinaria de cazar crashes ---
+# Antes esto se apagaba con un interruptor y el codigo se quedaba ahi, apagado. Ahora se
+# borra: el mod publico no lleva ni las migajas, ni el registro en disco, ni el historial
+# de crashes, ni los mensajes de diagnostico. El script comprueba al final que el Lua
+# resultante sigue siendo valido; si algo no cuadra, se planta y no se publica nada.
+$limpiador = Join-Path $BASE 'limpiar-diagnosticos.py'
+if (-not (Test-Path $limpiador)) { throw "No encuentro el limpiador: $limpiador" }
+Write-Host '  quitando la maquinaria de diagnostico...'
+& python $limpiador $modOut
+if ($LASTEXITCODE -ne 0) { throw 'El limpiado de diagnosticos fallo. No se publica nada.' }
+
 # --- 4) Comprobaciones antes de dar por buena la version ---
 $mainPub = Join-Path $modOut 'main.lua'
-if ((Get-Content $mainPub -Raw) -notmatch 'local AE_DIAG = false') { throw 'El interruptor NO quedo en false' }
+$textoMain = [System.IO.File]::ReadAllText($mainPub)
+foreach ($resto in @('AE_DIAG', 'Crumb(', 'ae_livelog', 'ae_crumb', 'ae_crashlogs', 'AE-DIAG')) {
+    if ($textoMain.Contains($resto)) { throw "Ha quedado diagnostico en main.lua: $resto" }
+}
 if (-not (Test-Path (Join-Path $modOut 'debug_tools.lua'))) { throw 'FALTA debug_tools.lua (F3/F4/F5 deben funcionar)' }
 foreach ($c in @('main.lua','speech.lua','helpers.lua','speech_bridge.dll','UniversalSpeech.dll')) {
     if (-not (Test-Path (Join-Path $modOut $c))) { throw "Falta un archivo imprescindible: $c" }
@@ -106,8 +106,9 @@ if ($bak) { throw "Se colaron respaldos: $($bak.Name -join ', ')" }
 # carpeta AE_debug, vaciaba cuatro archivos y dejaba una migaja, pasara lo que pasara.
 # Ahora la carpeta se crea bajo demanda (EnsureDumpDir), solo al pulsar F3/F4/F5. Estas
 # comprobaciones evitan que eso se vuelva a colar sin darnos cuenta.
-$dbg = Get-Content (Join-Path $modOut 'debug_tools.lua') -Raw
-if ($dbg -notmatch 'EnsureDumpDir') { throw 'debug_tools.lua no tiene la creacion bajo demanda de la carpeta' }
+$dbg = [System.IO.File]::ReadAllText((Join-Path $modOut 'debug_tools.lua'))
+if (-not $dbg.Contains('EnsureDumpDir')) { throw 'debug_tools.lua no tiene la creacion bajo demanda de la carpeta' }
+if ($dbg.Contains('ae_crumb')) { throw 'han quedado migajas en debug_tools.lua' }
 $init = $dbg -replace '(?s)^.*function DebugTools\.Init', ''
 if ($init -match 'os\.execute') { throw 'debug_tools.Init vuelve a crear la carpeta al arrancar' }
 if ($init -match 'filesToClear') { throw 'debug_tools.Init vuelve a vaciar archivos al arrancar' }

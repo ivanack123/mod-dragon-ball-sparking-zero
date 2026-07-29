@@ -238,8 +238,6 @@ function Gallery.PollCharacter()
         -- este contador de ticks lo resuelve. Si sale `ticks=2` con un `esperas=` alto, el mod está listo
         -- enseguida y el tiempo se lo come el juego rellenando la ficha; si sale `ticks` alto, la culpa es
         -- del throttle o del gate de churn y hay que mirar ahí.
-        print("[AE-DIAG] Gallery detail for " .. full .. " (ticks=" .. tostring(_detailTicks)
-              .. " esperas=" .. tostring(_detailWaits) .. "): cats=[" .. catsStr .. "] skills=[" .. skillsStr .. "]")
         SpeakDetail(catsStr, skillsStr)
     elseif sig ~= _announcedSig then
         -- Ficha ESTABLE y DISTINTA de la ya anunciada con este mismo nombre => es OTRO personaje que
@@ -248,12 +246,10 @@ function Gallery.PollCharacter()
         -- no quedar comparando contra una firma ya caduca.
         _announcedSig = sig
         if _sameNameAnnounces >= SAME_NAME_LIMIT then
-            print("[AE-DIAG] Gallery: tope de re-anuncios con el mismo nombre, se calla (¿panel oscilando?)")
         else
             _sameNameAnnounces = _sameNameAnnounces + 1
             Speak(full, true)
             print("[AE] Gallery character (otro con el mismo nombre): " .. full)
-            print("[AE-DIAG] Gallery detail for " .. full .. ": cats=[" .. catsStr .. "] skills=[" .. skillsStr .. "]")
             SpeakDetail(catsStr, skillsStr)
         end
     end

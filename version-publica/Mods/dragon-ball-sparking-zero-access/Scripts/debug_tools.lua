@@ -22,12 +22,8 @@ local GetClassName = H.GetClassName
 
 local DUMP_DIR = "AE_debug"
 
--- CARPETA Y ARCHIVOS BAJO DEMANDA (07-29). Antes `Init` creaba la carpeta AE_debug y
--- vaciaba cuatro archivos EN CADA ARRANQUE, aunque nadie tocara F3/F4/F5: quien solo
--- quiere jugar se encontraba archivos apareciendo en la carpeta del juego sin haberlos
--- pedido. Ahora la carpeta se crea la PRIMERA vez que de verdad se va a escribir algo,
--- o sea solo si el usuario pulsa una de esas teclas. Si nunca las pulsa, el mod no deja
--- ni un byte en disco.
+-- La carpeta y los archivos se crean cuando de verdad hay algo que volcar, o sea solo si
+-- se pulsa F3, F4 o F5. Si no se pulsan, el mod no deja nada en el disco.
 local _dumpDirReady = false
 local function EnsureDumpDir()
     if _dumpDirReady then return end
@@ -35,15 +31,13 @@ local function EnsureDumpDir()
     pcall(os.execute, "mkdir " .. DUMP_DIR .. " 2>NUL")
 end
 
--- Sustituye al "vaciar al arrancar" que hacia Init: el primer AÑADIDO de cada archivo en
--- esta sesion lo abre en modo escritura (lo deja limpio) y a partir de ahi ya añade. Mismo
--- resultado que antes -- los volcados no arrastran la sesion anterior -- pero sin escribir
--- nada hasta que hay algo real que escribir.
-local _freshThisSession = {}
+-- Cada archivo se vacia en su PRIMER uso de esta sesion y a partir de ahi ya se añade.
+-- Asi un volcado recoge lo de ahora y no arrastra el de la vez anterior.
+local _primerUso = {}
 
 local function WriteDump(filename, content)
     EnsureDumpDir()
-    _freshThisSession[filename] = true
+    _primerUso[filename] = true
     local f = io.open(DUMP_DIR .. "/" .. filename, "w")
     if not f then
         print("[AE-DBG] Error: could not write " .. filename)
@@ -56,12 +50,12 @@ end
 
 local function AppendDump(filename, content)
     EnsureDumpDir()
-    local mode = "a"
-    if not _freshThisSession[filename] then
-        _freshThisSession[filename] = true
-        mode = "w"
+    local modo = "a"
+    if not _primerUso[filename] then
+        _primerUso[filename] = true
+        modo = "w"
     end
-    local f = io.open(DUMP_DIR .. "/" .. filename, mode)
+    local f = io.open(DUMP_DIR .. "/" .. filename, modo)
     if not f then
         print("[AE-DBG] Error: could not append " .. filename)
         return
@@ -256,28 +250,15 @@ local function StartDumpLoop()
         -- Ahora respeta el mismo freno que todo lo demás: durante una reconstrucción NO escanea. Se pierden
         -- las capturas de esos instantes — que es justo cuando el volcado no es de fiar de todos modos — y
         -- se conservan todas las de pantallas asentadas, que son las que usamos para diagnosticar.
-        -- La MIGAJA del volcado es diagnóstico de cacería de crashes: solo en la versión de trabajo.
-        -- El FRENO de churn de abajo SÍ se queda siempre: eso protege al usuario, no diagnostica.
         local T = package.loaded["poll_trackers"]
-        local _diag = not T or T.aeDiag ~= false
         if T and T.uiChurnUntil and os.clock() < T.uiChurnUntil then
-            if _diag then
-                local oks, sf = pcall(io.open, "AE_debug/ae_crumb_dump.txt", "w")
-                if oks and sf then sf:write("D:churnskip " .. os.date("%H:%M:%S")); sf:close() end
-            end
             return false  -- saltar este ciclo, seguir vivo
         end
-        if _diag then
-            local okc, cf = pcall(io.open, "AE_debug/ae_crumb_dump.txt", "w")
-            if okc and cf then cf:write("D:scan " .. os.date("%H:%M:%S")); cf:close() end
-        end
+        -- La MIGAJA del volcado es diagnóstico de cacería de crashes: solo en la versión de trabajo.
+        -- El FRENO de churn de arriba SÍ se queda siempre: eso protege al usuario, no diagnostica.
         local ok, entry = pcall(BuildDumpEntry)
         if ok and entry then
             AppendDump("debug_dump.txt", entry)
-        end
-        if _diag then
-            local okd, df = pcall(io.open, "AE_debug/ae_crumb_dump.txt", "w")
-            if okd and df then df:write("D:idle " .. os.date("%H:%M:%S")); df:close() end
         end
         return false  -- continue loop
     end)
@@ -285,19 +266,8 @@ end
 
 -- Marca el volcado como APAGADO en su migaja. Se llama al detenerlo Y al cargar el módulo, para que
 -- un `D:idle` de la sesión ANTERIOR no se lea como si el volcado hubiera estado activo en esta.
--- SOLO en la versión de trabajo: es una migaja de cacería de crashes. En la pública era, además,
--- la única escritura que ocurría en CADA arranque sin que el usuario pidiera nada (07-29).
-local function CrumbDumpOff()
-    local T = package.loaded["poll_trackers"]
-    if T and T.aeDiag == false then return end
-    EnsureDumpDir()
-    local ok, f = pcall(io.open, "AE_debug/ae_crumb_dump.txt", "w")
-    if ok and f then f:write("D:off"); f:close() end
-end
-
 local function StopDumpLoop()
     _dumpActive = false
-    CrumbDumpOff()
     AppendDump("debug_dump.txt", "=== Dump Stopped " .. os.date("%Y-%m-%d %H:%M:%S") .. " ===\n")
 end
 
@@ -1255,11 +1225,6 @@ end
 -- === INIT & KEYBINDS ===
 
 function DebugTools.Init(SpeakFn)
-    -- AQUÍ NO SE ESCRIBE NADA (07-29). Antes, arrancar el juego creaba la carpeta AE_debug y
-    -- dejaba cuatro archivos vacíos aunque nadie fuera a usar F3/F4/F5. Eso ahora lo hacen
-    -- `EnsureDumpDir` y `_freshThisSession`, la primera vez que hay algo real que volcar.
-    -- Init solo registra las teclas: si el usuario no las pulsa, el disco no se toca.
-
     -- F5: Toggle continuous debug dump
     RegisterKeyBind(Key.F5, function()
         if _dumpActive then
@@ -1292,9 +1257,6 @@ function DebugTools.Init(SpeakFn)
         if SpeakFn then SpeakFn("Battle dump complete", true) end
     end)
 
-    -- Deja la migaja del volcado en "apagado" al arrancar: si esta sesión no usa F5, un `D:idle`
-    -- heredado de la sesión anterior no debe hacernos creer que el volcado estaba corriendo.
-    CrumbDumpOff()
 
     print("[AE-DBG] Debug tools loaded. F3=battle dump, F4=chara select, F5=toggle debug dump")
 end

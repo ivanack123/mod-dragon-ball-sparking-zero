@@ -986,7 +986,6 @@ local _sysMsgDiagKey = nil  -- DIAG: dedup for the Text_ToNext contents log
 -- La ventana se sella AL CARGAR el módulo y es FAIL-SAFE (LECCIÓN 11): expira sola, no es un flag de
 -- estado que se pueda quedar pegado. 180s da margen de sobra sobre los 35s medidos.
 local _sysMsgWindowEnd = os.clock() + 180
-local _sysMsgGateDiagDone = false
 
 -- Reads main-menu system messages (e.g. the startup "Bonificación de inicio de sesión
 -- enviada" login bonus) shown in WBP_MainMenu_Base_TextSub_C's Text_ToNext field — a
@@ -999,11 +998,6 @@ function Trackers.PollSystemMessage()
         -- DIAG de UNA SOLA VEZ en toda la sesión: ¿la puerta seguía abierta al cerrarse la ventana?
         -- Si dice presente=true, `WBP_Title_C` ES un panel fantasma y por fin lo sabremos (dato que
         -- llevamos meses sin confirmar). Una sola llamada, en un tick ya pasado el gate de churn.
-        if not _sysMsgGateDiagDone then
-            _sysMsgGateDiagDone = true
-            local t = GetCachedFirstOf("WBP_Title_C")
-            print("[AE-DIAG] sysmsg ventana cerrada; WBP_Title_C presente=" .. tostring(t ~= nil))
-        end
         _lastSysMsg = nil
         return
     end
@@ -1047,7 +1041,6 @@ function Trackers.PollSystemMessage()
     local dk = table.concat(keys, " | ")
     if dk ~= "" and dk ~= _sysMsgDiagKey then
         _sysMsgDiagKey = dk
-        print("[AE-DIAG] sysmsg ToNext: " .. dk)
     end
     if announce then
         if announce ~= _lastSysMsg then
