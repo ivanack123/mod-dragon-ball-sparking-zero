@@ -17,3 +17,6 @@ Desktop.ini
 # Basura que genera Python al importar el limpiador
 __pycache__/
 *.pyc
+
+# Copia de trabajo para arrastrar al navegador; los archivos ya estan en el repo
+para subir a github/
