@@ -143,6 +143,9 @@ Hecho por y para la comunidad de jugadores ciegos.
 [Licencia MIT](LICENSE). Puedes usarlo, modificarlo y redistribuirlo, incluso con
 cambios, siempre que se mantengan los créditos y el aviso de licencia.
 
+Si prefieres leerla en español, está explicada y traducida en
+[LICENCIA-ES.md](LICENCIA-ES.md).
+
 Incluye UE4SS y UniversalSpeech, que tienen sus propias licencias y pertenecen a sus
 respectivos autores. Este proyecto no está afiliado, mantenido ni patrocinado por Bandai
 Namco ni por Spike Chunsoft. DRAGON BALL Sparking! ZERO es propiedad de sus titulares.
